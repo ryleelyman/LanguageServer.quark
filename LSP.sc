@@ -204,13 +204,14 @@ LSPConnection {
 
 	prHandleResponse {
 		|id, result|
+    if (result.isNil, { ^nil }, {
+      var response = (
+        id: id,
+        result: result 
+      );
 
-		var response = (
-			id: id,
-			result: result ?? { NilResponse() }
-		);
-
-		this.prSendMessage(response);
+      this.prSendMessage(response);
+    });
 	}
 
 	prEncodeMessage {

@@ -243,11 +243,9 @@ LSPDatabase {
 		};
 
 		^(
-			label: (
-				label: 				method.name.asString,
-				detail: 			LSPDatabase.methodArgString(method),
-				description: 		method.ownerClass.name.asString
-			),
+      label: 				method.name.asString,
+      detail: 			LSPDatabase.methodArgString(method),
+      description: 		method.ownerClass.name.asString
 			kind: 1, 				// CompletionItemKind.Method
 			// deprecated: false,	// mark this as deprecated - no way to use this?
 			// detail:				// @TODO: additional detail
@@ -367,9 +365,7 @@ LSPDatabase {
 		|class|
 		var name = class.name.asString;
 		^(
-			label: (
-				label: 				name,
-			),
+      label: 				name,
 			kind: 7, 				// CompletionItemKind.Class
 			// deprecated: false,	// mark this as deprecated - no way to use this?
 			// detail:				// @TODO: additional detail
