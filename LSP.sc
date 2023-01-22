@@ -61,16 +61,16 @@ LSPConnection {
 		Log('LanguageServer.quark').info("Starting language server, inPort: % outPort:%", inPort, outPort);
 
 		socket = NetAddr("127.0.0.1", outPort);
-		thisProcess.openUDPPort(inPort, \raw);
 
-		thisProcess.recvRawfunc = {
+		thisProcess.addRawRecvFunc({
 			|time, replyAddr, msg|
 			this.prOnReceived(time, replyAddr, msg)
-		};
+		});
 
 		// @TODO Is this the only "default" provider we want?
 		this.addProvider(InitializeProvider(this, {}));
 
+		thisProcess.openUDPPort(inPort, \raw);
 		readyMsg.postln;
 	}
 
@@ -103,7 +103,7 @@ LSPConnection {
 	}
 
 	prOnReceived {
-		|time, replyAddr, message|
+		|message, time, replyAddr|
 
 		Log('LanguageServer.quark').info("Message received: %, %, %", time, replyAddr, message);
 
