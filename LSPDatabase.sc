@@ -243,9 +243,12 @@ LSPDatabase {
 		};
 
 		^(
-      label: 				method.name.asString,
-      detail: 			LSPDatabase.methodArgString(method),
-      description: 		method.ownerClass.name.asString
+      label: method.name.asString,
+			labelDetails: (
+				label: 				method.name.asString,
+				detail: 			LSPDatabase.methodArgString(method),
+				description: 		method.ownerClass.name.asString
+			),
 			kind: 1, 				// CompletionItemKind.Method
 			// deprecated: false,	// mark this as deprecated - no way to use this?
 			// detail:				// @TODO: additional detail
